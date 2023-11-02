@@ -4,7 +4,7 @@ A pip package for FoToM (**Fo**undational **To**pology **M**odels), pretrained m
 
 ![FoToM Embedding](https://github.com/neutralpronoun/fotom/blob/main/fotom/assets/embedding-github.png)
 
-FoToM are pre-trained with contrastive learning on node-label-free graphs, but we show that under fine-tuning on node-labelled data there is still a significant performance increase.
+FoToM is a model pre-trained with contrastive learning on node-label-free graphs, but we show that under fine-tuning on node-labelled data there is still a significant performance increase.
 
 ### Data Formats
 
