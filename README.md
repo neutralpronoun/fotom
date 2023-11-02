@@ -2,6 +2,8 @@
 
 A pip package for FoToM (**Fo**undational **To**pology **M**odels), pretrained models for graph deep learning.
 
+![FoToM Embedding](https://github.com/neutralpronoun/fotom/blob/main/fotom/assets/embedding-github.png)
+
 FoToM are pre-trained with contrastive learning on node-label-free graphs, but we show that under fine-tuning on node-labelled data there is still a significant performance increase.
 
 ### Data Formats
@@ -74,6 +76,12 @@ This takes the following arguments:
 - `encoder`: (probably) an `fotom.model.Encoder` instance
 - `linear_layers=(300,)`: the dimensions of each (non-output) linear layer following the encoder
 - `output_dim=300`: the dimensions of the final output
+
+### Small note
+
+I have spent days of my life this year wading through versioning hell trying to get various GNN python packages to work.
+For this reason requirements.txt, which installs required packages to your environment, doesn't have any versions attached.
+It'll be up to you to upgrade/downgrade packages, but this for me is the best solution.
 
 ## Credits
 
