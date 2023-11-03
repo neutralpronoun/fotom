@@ -2,6 +2,8 @@
 
 A pip package for FoToM (**Fo**undational **To**pology **M**odels), pretrained models for graph deep learning.
 
+![](https://raw.githubusercontent.com/neutralpronoun/fotom/main/fotom/assets/embedding-github.png)
+
 FoToM is a model pre-trained with contrastive learning on node-label-free graphs, but we show that under fine-tuning on node-labelled data there is still a significant performance increase.
 
 ### Data Formats
