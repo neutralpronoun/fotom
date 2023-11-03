@@ -8,6 +8,17 @@ A pip package for FoToM (**Fo**undational **To**pology **M**odels), pretrained m
 
 FoToM is a model pre-trained with contrastive learning on node-label-free graphs, but we show that under fine-tuning on node-labelled data there is still a significant performance increase.
 
+## Installation
+
+Please don't rely just on the pip install to sort out all the requirements, `torch_scatter` doesn't play well with others.
+
+You might need to manually pre-install:
+ - `torch`
+ - `torch_geometric`
+ - `torch_scatter`
+
+You would likely need these anyway and which versions you're using will (in most cases) not make a significant difference.
+
 ### Data Formats
 
  - Data can be passed to Embedder as `networkx` graphs or `pytorch_geometric.data.Data` objects
