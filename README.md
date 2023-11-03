@@ -1,3 +1,5 @@
+[![Publish Python 🐍 distribution 📦 to PyPI and TestPyPI](https://github.com/neutralpronoun/fotom/actions/workflows/pypi-publish.yml/badge.svg?branch=main)](https://github.com/neutralpronoun/fotom/actions/workflows/pypi-publish.yml)
+
 # FoToM
 
 A pip package for FoToM (**Fo**undational **To**pology **M**odels), pretrained models for graph deep learning.
