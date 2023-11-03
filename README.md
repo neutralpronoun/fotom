@@ -77,11 +77,13 @@ This takes the following arguments:
 - `linear_layers=(300,)`: the dimensions of each (non-output) linear layer following the encoder
 - `output_dim=300`: the dimensions of the final output
 
-### Small note
+[comment]: <> (### Small note)
 
-I have spent days of my life this year wading through versioning hell trying to get various GNN python packages to work.
-For this reason requirements.txt, which installs required packages to your environment, doesn't have any versions attached.
-It'll be up to you to upgrade/downgrade packages, but this for me is the best solution.
+[comment]: <> (I have spent days of my life this year wading through versioning hell trying to get various GNN python packages to work.)
+
+[comment]: <> (For this reason requirements.txt, which installs required packages to your environment, doesn't have any versions attached.)
+
+[comment]: <> (It'll be up to you to upgrade/downgrade packages, but this for me is the best solution.)
 
 ## Credits
 

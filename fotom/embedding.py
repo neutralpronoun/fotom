@@ -1,6 +1,6 @@
 import torch
 
-from model import load_encoder, load_transfer_model, TransferModel, Encoder
+from fotom.model import load_encoder, load_transfer_model, TransferModel, Encoder
 import networkx as nx
 from tqdm import tqdm
 from torch_geometric.utils.convert import from_networkx
@@ -70,6 +70,6 @@ if __name__ == "__main__":
     for _ in range(1000):
         graphs.append(nx.random_tree(12))
 
-    model = load_transfer_model()
-    embedder = Embedder(encoder=model)
+    # model = load_transfer_model()
+    embedder = Embedder()
     print(embedder(graphs).shape)

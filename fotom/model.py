@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 import yaml
+import os
 from torch import Tensor
 import torch.nn.functional as F
 from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder
@@ -11,7 +12,51 @@ from torch_geometric.nn.conv import MessagePassing
 from torch_geometric.typing import OptPairTensor, Adj, OptTensor, Size
 from torch_geometric.transforms import Compose
 from torch_sparse import SparseTensor
-from utils import wandb_cfg_to_actual_cfg
+from fotom.utils import wandb_cfg_to_actual_cfg
+import importlib.resources
+import tempfile
+
+def load_yaml_object(filename):
+    package_name = 'fotom'  # Adjust to your package structure
+
+    # Define the path to the file within your package
+    file_path = filename
+
+    try:
+        # Use importlib.resources to load the file
+        file_content = importlib.resources.read_text(package_name, file_path)
+
+        # Parse the YAML content
+        loaded_data = yaml.safe_load(file_content)
+
+        return loaded_data
+    except Exception as e:
+        raise ValueError(f"Error loading {file_path}: {e}")
+
+
+def load_torch_object(filename):
+    package_name = 'fotom'  # Adjust to your package structure
+
+    # Define the path to the file within your package
+    file_path = "assets"/filename
+
+    try:
+        # Use importlib.resources to load the file
+        file_content = importlib.resources.read_binary(package_name, file_path)
+
+        # Create a temporary file to save the content
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(file_content)
+
+        # Use torch.load to load the content from the temporary file
+        loaded_data = torch.load(temp_file.name)
+
+        # Clean up the temporary file
+        os.remove(temp_file.name)
+
+        return loaded_data
+    except Exception as e:
+        raise ValueError(f"Error loading {file_path}: {e}")
 
 def initialize_edge_weight(data):
 	data.edge_weight = torch.ones(data.edge_index.shape[1], dtype=torch.float)
@@ -21,15 +66,18 @@ def load_encoder():
     checkpoint = "fotom.pt"
     checkpoint_path = f"assets/{checkpoint}"
     cfg_name = checkpoint.split('.')[0] + ".yaml"
-    config_path = f"assets/{cfg_name}"
-    with open(config_path, 'r') as stream:
-        args  = yaml.safe_load(stream)
+    # config_path = f"assets/{cfg_name}"
+    # with open(config_path, 'r') as stream:
+    #     args  = yaml.safe_load(stream)
     # args = wandb_cfg_to_actual_cfg(args)
+
+    args = load_yaml_object(cfg_name)
 
     model = Encoder(emb_dim=args["emb_dim"]["value"], num_gc_layers=args["num_gc_layers"]["value"], drop_ratio=args["drop_ratio"]["value"],
                     pooling_type=args["pooling_type"]["value"])
 
-    model_dict = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+    # model_dict = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+    model_dict = load_torch_object("fotom.pt")
     model.load_state_dict(model_dict['encoder_state_dict'], strict=False)
 
     return model
