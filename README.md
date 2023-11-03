@@ -77,6 +77,7 @@ This takes the following arguments:
 
 ## Credits
 
+
 FoToM is a work by Alex Davies, Riku Green, Nirav Ajmeri and Telmo de Menezes e Silva Filho, all academics at the University of Bristol.
 
 FoToM is an extension of the AD-GCL work by Suresh et. al., <https://arxiv.org/abs/2106.05819>.
