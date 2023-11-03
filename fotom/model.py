@@ -10,9 +10,7 @@ from torch_geometric.nn import global_add_pool
 from typing import Callable, Union
 from torch_geometric.nn.conv import MessagePassing
 from torch_geometric.typing import OptPairTensor, Adj, OptTensor, Size
-from torch_geometric.transforms import Compose
 from torch_sparse import SparseTensor
-from fotom.utils import wandb_cfg_to_actual_cfg
 import importlib.resources
 import tempfile
 
