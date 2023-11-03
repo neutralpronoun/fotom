@@ -78,6 +78,7 @@ This takes the following arguments:
 - `output_dim=300`: the dimensions of the final output
 
 
+
 ## Credits
 
 FoToM is a work by Alex Davies, Riku Green, Nirav Ajmeri and Telmo de Menezes e Silva Filho, all academics at the University of Bristol.
