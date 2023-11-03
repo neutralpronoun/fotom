@@ -77,7 +77,7 @@ setup(
     name="fotom",
     version="0.0.1",
     url="https://github.com/neutralpronoun/fotom",
-    author="Alex Davies, Riku Green",
+    author="neutralpronoun",
     author_email="alexander.davies@bristol.ac.uk",
     description="A pip package for FoToM (Foundational Topology Models), pretrained models for graph deep learning",
     long_description="https://github.com/neutralpronoun/fotom",
