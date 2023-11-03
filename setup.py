@@ -80,7 +80,7 @@ setup(
     author="Alex Davies, Riku Green",
     author_email="alexander.davies@bristol.ac.uk",
     description="A pip package for FoToM (Foundational Topology Models), pretrained models for graph deep learning",
-    long_description=read("README.md"),
+    long_description="https://github.com/neutralpronoun/fotom",
     packages=find_packages(exclude=("tests",)),
     install_requires=requirements,
     include_package_data=True,
