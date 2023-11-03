@@ -38,7 +38,7 @@ def load_torch_object(filename):
     package_name = 'fotom'  # Adjust to your package structure
 
     # Define the path to the file within your package
-    file_path = "assets"/filename
+    file_path = filename
 
     try:
         # Use importlib.resources to load the file
@@ -49,7 +49,7 @@ def load_torch_object(filename):
             temp_file.write(file_content)
 
         # Use torch.load to load the content from the temporary file
-        loaded_data = torch.load(temp_file.name)
+        loaded_data = torch.load(temp_file.name, map_location=torch.device('cpu'))
 
         # Clean up the temporary file
         os.remove(temp_file.name)
@@ -64,19 +64,13 @@ def initialize_edge_weight(data):
 
 def load_encoder():
     checkpoint = "fotom.pt"
-    checkpoint_path = f"assets/{checkpoint}"
     cfg_name = checkpoint.split('.')[0] + ".yaml"
-    # config_path = f"assets/{cfg_name}"
-    # with open(config_path, 'r') as stream:
-    #     args  = yaml.safe_load(stream)
-    # args = wandb_cfg_to_actual_cfg(args)
 
     args = load_yaml_object(cfg_name)
 
     model = Encoder(emb_dim=args["emb_dim"]["value"], num_gc_layers=args["num_gc_layers"]["value"], drop_ratio=args["drop_ratio"]["value"],
                     pooling_type=args["pooling_type"]["value"])
 
-    # model_dict = torch.load(checkpoint_path, map_location=torch.device('cpu'))
     model_dict = load_torch_object("fotom.pt")
     model.load_state_dict(model_dict['encoder_state_dict'], strict=False)
 
@@ -84,18 +78,14 @@ def load_encoder():
 
 def load_transfer_model(linear_layers = (300,), output_dim = 1):
     checkpoint = "fotom.pt"
-    checkpoint_path = f"assets/{checkpoint}"
     cfg_name = checkpoint.split('.')[0] + ".yaml"
-    config_path = f"assets/{cfg_name}"
-    with open(config_path, 'r') as stream:
-        args  = yaml.safe_load(stream)
-    # args = wandb_cfg_to_actual_cfg(args)
+    args = load_yaml_object(cfg_name)
 
     model = TransferModel(Encoder(emb_dim=args["emb_dim"]["value"], num_gc_layers=args["num_gc_layers"]["value"], drop_ratio=args["drop_ratio"]["value"],
                                   pooling_type=args["pooling_type"]["value"]),
                           linear_layers=linear_layers, output_dim=output_dim)
 
-    model_dict = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+    model_dict = load_torch_object("fotom.pt")
     model.load_state_dict(model_dict['encoder_state_dict'], strict=False)
 
     return model

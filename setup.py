@@ -88,4 +88,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.6"
     ],
+    package_data={'fotom':["fotom.pt", "fotom.yaml"]},
+    test_suite = "pytest",
+    tests_retuire=["pytest"]
 )
