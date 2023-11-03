@@ -45,8 +45,8 @@ sympy
 text-unidecode
 threadpoolctl
 torch
-torch-scatter
-torch-sparse
+torch_scatter
+torch_sparse
 torch_geometric
 tqdm
 types-python-dateutil
