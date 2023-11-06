@@ -75,7 +75,7 @@ requirements = [
 
 setup(
     name="fotom",
-    version="1.0.2",
+    version="1.1.0",
     url="https://github.com/neutralpronoun/fotom",
     author="neutralpronoun",
     author_email="alexander.davies@bristol.ac.uk",

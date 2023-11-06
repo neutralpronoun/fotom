@@ -1,6 +1,8 @@
 import torch
-
-from fotom.model import load_encoder, load_transfer_model, TransferModel, Encoder
+try:
+    from fotom.model import load_encoder, load_transfer_model, TransferModel, Encoder
+except:
+    from model import load_encoder, load_transfer_model, TransferModel, Encoder
 import networkx as nx
 from tqdm import tqdm
 from torch_geometric.utils.convert import from_networkx
@@ -28,14 +30,15 @@ class Embedder:
 
     def convert_from_networkx(self, data):
         pbar = tqdm(data, desc = "Converting from networkx", leave=False)
+        new_data = []
         for i_graph, graph in enumerate(pbar):
             try:
-                data[i_graph] = from_networkx(graph,
+                new_data += [from_networkx(graph,
                                               group_node_attrs = all,
-                                              group_edge_attrs = all)
+                                              group_edge_attrs = all)]
             except:
-                data[i_graph] = from_networkx(graph)
-        return data
+                new_data += [from_networkx(graph)]
+        return new_data
 
     def check_data(self, data):
         for i_graph, graph in enumerate(data):

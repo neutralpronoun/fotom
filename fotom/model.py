@@ -29,7 +29,19 @@ def load_yaml_object(filename):
 
         return loaded_data
     except Exception as e:
-        raise ValueError(f"Error loading {file_path}: {e}")
+        print("Failed to use package data importing, assuming this is dev testing")
+
+        # # Use importlib.resources to load the file
+        # file_content = importlib.resources.read_text(package_name, file_path)
+        #
+        # # Parse the YAML content
+        # loaded_data = yaml.safe_load(file_content)
+        print(os.getcwd())
+        with open("fotom/fotom.yaml", "r") as f:
+            loaded_data = yaml.safe_load(f)
+
+        return loaded_data
+        # raise ValueError(f"Error loading {file_path}: {e}")
 
 
 def load_torch_object(filename):
@@ -54,7 +66,14 @@ def load_torch_object(filename):
 
         return loaded_data
     except Exception as e:
-        raise ValueError(f"Error loading {file_path}: {e}")
+        print("Failed to use package data importing, assuming this is dev testing")
+        loaded_data = torch.load("fotom/fotom.pt", map_location=torch.device('cpu'))
+
+        # Clean up the temporary file
+        # os.remove(temp_file.name)
+
+        return loaded_data
+        # raise ValueError(f"Error loading {file_path}: {e}")
 
 def initialize_edge_weight(data):
 	data.edge_weight = torch.ones(data.edge_index.shape[1], dtype=torch.float)
